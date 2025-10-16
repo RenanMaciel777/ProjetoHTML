@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Exemplo: Página HTML Responsiva</title>
+  <meta name="description" content="Página exemplo com layout responsivo, cards e formulário." />
+
+  <style>
+    /* Reset simples */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; color: #111; background: #f6f7fb; }
+    a { color: inherit; text-decoration: none; }
+
+    /* Layout */
+    .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+
+    /* Header */
+    header { background: #ffffff; box-shadow: 0 6px 18px rgba(16,24,40,0.06); position: sticky; top: 0; z-index: 40; }
+    .nav-inner { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:12px 20px; }
+    .brand { display:flex; gap:12px; align-items:center; font-weight:700; font-size:18px; }
+    .logo { width:40px; height:40px; display:inline-grid; place-items:center; background:linear-gradient(135deg,#6b21a8,#059669); color:white; border-radius:8px; font-weight:700; }
+    .nav-links { display:flex; gap:14px; align-items:center; }
+    .nav-links a { padding:8px 10px; border-radius:8px; transition: background .15s; }
+    .nav-links a:hover { background:#f3f4f6; }
+
+    /* Mobile menu */
+    .menu-btn { display:none; background:none; border:0; font-size:20px; padding:6px; }
+    @media (max-width:800px){
+      .nav-links { display:none; position:absolute; right:16px; top:68px; background:white; box-shadow:0 8px 24px rgba(16,24,40,0.08); border-radius:10px; flex-direction:column; padding:8px; }
+      .menu-btn { display:block; }
+      .nav-links.show { display:flex; }
+    }
+
+    /* Hero */
+    .hero { display:flex; gap:28px; align-items:center; padding:44px 20px; }
+    .hero-left { flex:1; }
+    .hero h1 { font-size:32px; margin:0 0 12px; line-height:1.05; }
+    .hero p { margin:0 0 18px; color:#374151; }
+    .cta { display:inline-block; padding:10px 16px; border-radius:10px; background:#0ea5a4; color:white; font-weight:600; box-shadow: 0 6px 18px rgba(14,165,164,0.18); }
+    .hero-right { flex:1; min-width:240px; }
+
+    /* Cards */
+    .cards { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:18px; }
+    .card { background:white; border-radius:12px; padding:18px; box-shadow:0 8px 24px rgba(16,24,40,0.04); }
+    .card h3 { margin:0 0 8px; font-size:18px; }
+    .card p { margin:0; color:#4b5563; font-size:14px; }
+
+    @media (max-width:1000px) { .cards { grid-template-columns:repeat(2,1fr); } }
+    @media (max-width:640px) {
+      .hero { flex-direction:column; padding:26px 12px; }
+      .cards { grid-template-columns:1fr; }
+    }
+
+    /* Form */
+    form { background:white; padding:18px; border-radius:12px; box-shadow:0 6px 20px rgba(16,24,40,0.05); display:grid; gap:10px; }
+    label { font-size:13px; color:#374151; }
+    input[type="text"], input[type="email"], textarea {
+      width:100%; padding:10px 12px; border-radius:8px; border:1px solid #e6e7eb; font-size:14px;
+    }
+    textarea { min-height:100px; resize:vertical; }
+    .row { display:flex; gap:10px; }
+    .row > * { flex:1; }
+    button[type="submit"] { padding:10px 14px; border-radius:10px; background:#111827; color:white; border:0; cursor:pointer; font-weight:600; }
+
+    /* Footer */
+    footer { margin-top:28px; padding:24px 20px; color:#6b7280; font-size:14px; text-align:center; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav-inner">
+      <div class="brand">
+        <div class="logo">RN</div>
+        <div>
+          <div>Meu Projeto</div>
+          <small style="color:#6b7280; display:block; font-weight:500;">Um exemplo rápido</small>
+        </div>
+      </div>
+
+      <nav>
+        <button class="menu-btn" aria-expanded="false" aria-controls="navLinks" id="menuBtn">☰</button>
+        <div class="nav-links" id="navLinks">
+          <a href="#home">Início</a>
+          <a href="#features">Recursos</a>
+          <a href="#contact">Contato</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="home" class="hero" aria-labelledby="hero-title">
+      <div class="hero-left">
+        <h1 id="hero-title">Página exemplo: bonita, rápida e responsiva</h1>
+        <p>Use este template como ponto de partida. Tem navegação móvel, cards de recursos e formulário com validação mínima.</p>
+        <a class="cta" href="#contact">Fale conosco</a>
+
+        <div class="cards" aria-hidden="false" style="margin-top:22px;">
+          <article class="card">
+            <h3>Design Responsivo</h3>
+            <p>Funciona bem em desktop, tablet e celular com poucas linhas de CSS.</p>
+          </article>
+
+          <article class="card">
+            <h3>Leve e Simples</h3>
+            <p>Sem bibliotecas externas — apenas HTML, CSS e um pouco de JavaScript.</p>
+          </article>
+
+          <article class="card">
+            <h3>Fácil de Customizar</h3>
+            <p>Troque cores, fontes e conteúdo para adaptar ao seu projeto.</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="hero-right" aria-hidden="true">
+        <!-- Ilustração simples em SVG -->
+        <svg viewBox="0 0 600 400" style="width:100%; border-radius:12px; display:block;">
+          <rect x="0" y="0" width="100%" height="100%" rx="12" fill="#eef2ff"></rect>
+          <g transform="translate(40,40)" fill="#c7d2fe">
+            <rect x="0" y="0" width="220" height="120" rx="12"></rect>
+            <rect x="0" y="140" width="220" height="220" rx="12"></rect>
+            <rect x="260" y="0" width="220" height="360" rx="12" fill="#e0f2fe"></rect>
+          </g>
+        </svg>
+      </div>
+    </section>
+
+    <section id="features" style="margin-top:26px;">
+      <h2 style="margin:0 0 12px;">Recursos</h2>
+      <p style="margin:0 0 18px; color:#525252;">Algumas coisas que você pode destacar sobre seu site ou app.</p>
+      <div class="cards">
+        <div class="card"><h3>Performance</h3><p>O layout prioriza velocidade e simplicidade.</p></div>
+        <div class="card"><h3>SEO básico</h3><p>Uso de tags semânticas e meta tags essenciais.</p></div>
+        <div class="card"><h3>Compatibilidade</h3><p>Suporte para navegadores modernos e responsividade.</p></div>
+      </div>
+    </section>
+
+    <section id="contact" style="margin-top:28px;">
+      <h2 style="margin-bottom:10px;">Contato</h2>
+
+      <form id="contactForm" novalidate>
+        <div class="row">
+          <div>
+            <label for="name">Nome</label>
+            <input id="name" name="name" type="text" required placeholder="Seu nome" />
+          </div>
+          <div>
+            <label for="email">E-mail</label>
+            <input id="email" name="email" type="email" required placeholder="seu@exemplo.com" />
+          </div>
+        </div>
+
+        <div>
+          <label for="message">Mensagem</label>
+          <textarea id="message" name="message" required placeholder="Escreva sua mensagem..."></textarea>
+        </div>
+
+        <div style="display:flex; gap:10px; align-items:center; justify-content:flex-end; margin-top:6px;">
+          <small id="formStatus" style="color:#6b7280;">Campos obrigatórios marcados com *</small>
+          <button type="submit">Enviar</button>
+        </div>
+      </form>
